@@ -17,7 +17,7 @@ client = client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 # Load data
 @st.cache_data
 def load_data():
-    df = pd.read_csv('ecommerce_sales_analysis_clean.csv')
+    df = pd.read_csv('ecommerce_cleaned.csv')
     df['Order_Date'] = pd.to_datetime(df['Order_Date'], dayfirst=True)
     forecast = pd.read_csv('sales_forecast.csv')
     segments = pd.read_csv('customer_segments.csv')
