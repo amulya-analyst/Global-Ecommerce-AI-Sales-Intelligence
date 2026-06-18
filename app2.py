@@ -264,7 +264,7 @@ elif page == "🤖 AI Assistant":
         with st.chat_message('assistant'):
             with st.spinner('Thinking...'):
                 response = client.chat.completions.create(
-                    model="llama3-8b-8192",
+                    model="llama-3.3-70b-versatile",
                     messages=[
                         {'role': 'system', 'content': data_summary},
                         {'role': 'user', 'content': prompt}
