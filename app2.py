@@ -2,6 +2,15 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+plt.rcParams['figure.facecolor'] = '#0e1117'
+plt.rcParams['axes.facecolor'] = '#0e1117'
+plt.rcParams['axes.edgecolor'] = 'white'
+plt.rcParams['axes.labelcolor'] = 'white'
+plt.rcParams['xtick.color'] = 'white'
+plt.rcParams['ytick.color'] = 'white'
+plt.rcParams['text.color'] = 'white'
+plt.rcParams['legend.facecolor'] = '#262730'
+plt.rcParams['legend.edgecolor'] = 'white'
 from groq import Groq
 
 # Page config
@@ -65,6 +74,7 @@ if page == "📊 Dashboard":
         cat_revenue = df.groupby('Category')['Revenue'].sum().sort_values(ascending=False)
         fig, ax = plt.subplots(figsize=(8, 4))
         ax.bar(cat_revenue.index, cat_revenue.values, color='steelblue')
+        ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'${x/1e6:.1f}M'))
         ax.set_xlabel('Category')
         ax.set_ylabel('Revenue ($)')
         plt.xticks(rotation=45)
@@ -197,6 +207,8 @@ elif page == "👥 Customer Segments":
 elif page == "🤖 AI Assistant":
     st.title("🤖 AI Data Assistant")
     st.markdown("**Ask anything about the E-Commerce data!**")
+    st.divider()
+    st.info("👋 Hi! I'm your AI Data Assistant. I can answer questions about sales, revenue, customers, forecasts and more. Try the sample questions below or type your own!")
     st.divider()
 
     # Prepare data summary for AI
